@@ -1,0 +1,9 @@
+---
+- name: playbook vim
+  hosts: host1
+  remote_user: root
+  tasks:
+    - name: install vim
+      apt:
+         name: vim
+         state: present
