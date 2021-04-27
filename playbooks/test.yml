@@ -1,0 +1,15 @@
+---
+- hosts: webhost
+  remote_user: root
+  tasks:
+   - name: debug
+     debug:
+       msg: "hello"
+
+- hosts: devhost
+  remote_user: root
+  tasks: 
+   - name: ensure its installed
+     apt: 
+       name: vim
+       state: present 
