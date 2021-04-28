@@ -1,0 +1,15 @@
+---
+- hosts: webhost 
+  remote_server: root
+  vars_files:
+          - "../vars/{{env}}_var.yml"
+
+  tasks:
+   - name: debug
+     debug:
+       msg: "bonjour {{env}}"
+
+   - name: vim insall/desinstall
+     apt:
+        name: vim
+        state: "{{vim_state}}"
