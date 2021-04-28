@@ -1,0 +1,25 @@
+---
+- hosts: webhost
+  remote_user: root
+  vars_files: 
+         - "vars/{{env}}_vars.yml"
+         - "vars/{{env}}_secret.yml"
+
+  tasks:
+    - name: creat login
+      user:
+        name: "{{ item.username }}"
+        password: "{{ item.password}} | password_hash('sha512') }}"
+        createhome: yes
+      loop:
+         - username: "{{username1}}"
+           password: "{{password1}}"
+         - username: "{{username2}}"
+           password: "{{password2}}"
+      register: recap
+      when : ansible_facts['distribution'] == "Ubuntu"
+
+
+    - name: ok 
+      debug:
+        msg: "{{recap}}" 
